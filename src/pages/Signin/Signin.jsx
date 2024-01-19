@@ -5,7 +5,6 @@ import {useNavigation} from '@react-navigation/native'
 import { useState } from "react";
 
 import api from '../../services/api'
-import axios from "axios";
 
 export default function SignIn(){
     const {navigate} = useNavigation()
@@ -17,15 +16,15 @@ export default function SignIn(){
 
     const requestLogin = async () => {
         try {
-            const { data } = await axios.get('http://192.168.0.10/users', {
+            const { data } = await api.get('/users', {
                 params: {
                     email: user.email,
                     password: user.password
                 }
             })
-
+            console.log(data);
         } catch (error) {
-            console.log(error)
+            alert(error.message)
         }
     }
 
